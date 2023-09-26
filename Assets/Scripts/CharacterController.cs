@@ -12,21 +12,30 @@ public class CharacterController : MonoBehaviour
 
     // Update is called once per frame
 
-    public float MovementSpeedPerSecond = 10.0f;
+    //Gravity
+    public float GravityPerSecond = 40.0f; //Falling Speed
+    //Movement
+    public float MovementSpeedPerSecond = 10.0f; //Movement Speed
+
     void Update()
     {
+        //Gravity
+        Vector3 gravityPosition = transform.position; //Copy Character Pos
+        gravityPosition.y -= MovementSpeedPerSecond * Time.deltaTime; //Subtract Gravity*Deltatime
+        transform.position = gravityPosition; //Assign New Pos to transform
+
         //Up
         if (Input.GetKey(KeyCode.W))
         {
-            Vector3 characterPosition = transform.position; //Position av karäktären
-            characterPosition.y += MovementSpeedPerSecond * Time.deltaTime; //Hur snabbt karäktären rör sig gånger
-            transform.position = characterPosition; 
+            Vector3 characterPosition = transform.position; //Copy character position
+            characterPosition.y += MovementSpeedPerSecond * Time.deltaTime; //Add Movementspeed + Time for Frame
+            transform.position = characterPosition; //Assign New position
         }
         //Down
         if (Input.GetKey(KeyCode.S))
         {
-            Vector3 characterPosition = transform.position; //Position av karäktären
-            characterPosition.y -= MovementSpeedPerSecond * Time.deltaTime; //Hur snabbt karäktären rör si
+            Vector3 characterPosition = transform.position; 
+            characterPosition.y -= MovementSpeedPerSecond * Time.deltaTime; 
             transform.position = characterPosition;
         }
         //Left
@@ -39,8 +48,8 @@ public class CharacterController : MonoBehaviour
         //Right
         if (Input.GetKey(KeyCode.D))
         {
-            Vector3 characterPosition = transform.position; //Position av karäktären
-            characterPosition.x += MovementSpeedPerSecond * Time.deltaTime; //Hur snabbt karäktären rör sig gånger
+            Vector3 characterPosition = transform.position;
+            characterPosition.x += MovementSpeedPerSecond * Time.deltaTime;
             transform.position = characterPosition;
         }
 
