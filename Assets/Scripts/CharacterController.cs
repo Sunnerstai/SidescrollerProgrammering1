@@ -14,6 +14,7 @@ public class CharacterController : MonoBehaviour
 
     //Gravity
     public float GravityPerSecond = 40.0f; //Falling Speed
+    public float GroundLevel = 0.0f; //Ground Value
     //Movement
     public float MovementSpeedPerSecond = 10.0f; //Movement Speed
 
@@ -22,6 +23,7 @@ public class CharacterController : MonoBehaviour
         //Gravity
         Vector3 gravityPosition = transform.position; //Copy Character Pos
         gravityPosition.y -= MovementSpeedPerSecond * Time.deltaTime; //Subtract Gravity*Deltatime
+        if(gravityPosition.y < GroundLevel) { gravityPosition.y = GroundLevel; } //Set Character To Ground Level
         transform.position = gravityPosition; //Assign New Pos to transform
 
         //Up
