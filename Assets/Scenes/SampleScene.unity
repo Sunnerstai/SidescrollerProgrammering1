@@ -225,6 +225,7 @@ GameObject:
   m_Component:
   - component: {fileID: 946401276}
   - component: {fileID: 946401275}
+  - component: {fileID: 946401277}
   m_Layer: 0
   m_Name: pixel-16x32 (1)
   m_TagString: Untagged
@@ -273,7 +274,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 42bd21bada17bbf41bb963b31663dac5, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 83f64859907feab42aaa74ea2853338e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -299,6 +300,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &946401277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 946401274}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: de48533c74528a14aa65c3398f17dc6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GravityPerSecond: 40
+  GroundLevel: 0
+  MovementSpeedPerSecond: 10
 --- !u!1 &972981120
 GameObject:
   m_ObjectHideFlags: 0
