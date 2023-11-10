@@ -193,10 +193,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myRigidBody: {fileID: 3443054916268123892}
   JumpingState: 1
-  GravityPerSecond: 160
+  GravityPerSecond: 50
   GroundLevel: 0
   JumpSpeedFactor: 3
-  JumpMaxHeight: 150
+  JumpMaxHeight: 20
   JumpHeightDelta: 0
   MovementSpeedPerSecond: 10
 --- !u!50 &3443054916268123892

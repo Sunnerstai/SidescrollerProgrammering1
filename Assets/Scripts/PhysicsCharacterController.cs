@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using TreeEditor;
@@ -14,6 +15,8 @@ public enum CharacterState
 
 public class PhysicsCharacterController : MonoBehaviour
 {
+    public List<Sprite> CharacterSprite = new List<Sprite>();
+    public int HP = 1;
     //Refrence to rigidbody on same object
     public Rigidbody2D myRigidBody = null;
 
@@ -33,7 +36,7 @@ public class PhysicsCharacterController : MonoBehaviour
     //Movement
     public float MovementSpeedPerSecond = 10.0f; //Movement Speed
 
-
+   
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.W) && JumpingState == CharacterState.Grounded)
@@ -73,6 +76,5 @@ public class PhysicsCharacterController : MonoBehaviour
             characterVelocity.x += MovementSpeedPerSecond;
         }
         myRigidBody.velocity = characterVelocity;
-
     }
 }
