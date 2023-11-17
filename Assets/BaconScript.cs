@@ -5,6 +5,16 @@ using UnityEngine;
 public class BaconScript : MonoBehaviour
 {
     [SerializeField] int testInt = 5;
+    public int HP = 0;
+
+    public void TakeDamage(int aHPValue)
+    {
+        HP += aHPValue;
+        if (HP > 0)
+        {
+            GameObject.Destroy(gameObject);
+        }
+    }
 
     public float MovementSpeedPerSecond = 10.0f; //Movement speed
     public int MovementSign = 1;
@@ -27,7 +37,7 @@ public class BaconScript : MonoBehaviour
 
         myRigidBody.velocity = characterVelocity;
 
-        Debug.Log("Velocity is: " + myRigidBody.velocity);
+        //Debug.Log("Velocity is: " + myRigidBody.velocity);
     }
 
     // Example of a Getter method

@@ -15,6 +15,7 @@ public enum CharacterState
 
 public class PhysicsCharacterController : MonoBehaviour
 {
+    public SpriteRenderer mySpriteRenderer = null;
     public List<Sprite> CharacterSprite = new List<Sprite>();
     public int HP = 1;
     //Refrence to rigidbody on same object
@@ -32,6 +33,7 @@ public class PhysicsCharacterController : MonoBehaviour
     public float JumpMaxHeight = 150.0f;
     [SerializeField]
     private float JumpHeightDelta = 0.0f;
+    private float JumpStartingY = 0.0f;
 
     //Movement
     public float MovementSpeedPerSecond = 10.0f; //Movement Speed
@@ -39,16 +41,41 @@ public class PhysicsCharacterController : MonoBehaviour
    
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) && JumpingState == CharacterState.Grounded)
+        //Kolla of HP är mindre än 0
+        if(HP > 0) 
+        {
+            //Försöka få en referenns to SceneLoaderScript på det här gameObjektet
+            SceneLoader mySceneLoader = gameObject.GetComponent<SceneLoader>();
+            //Funkar eller inte
+            if(mySceneLoader != null)
+            {
+                mySceneLoader.LoadScene("Main Menu");
+            }
+        }
+        //Kopiera hp för att inte ändra karäktärens hp
+        int HPCopy = HP - 1;
+        if(HPCopy < 0)
+        {
+            HPCopy = 0;
+        }
+        if (HPCopy >= CharacterSprite.Count)
+        {
+            HPCopy = CharacterSprite.Count -1;
+        }
+        mySpriteRenderer.sprite = CharacterSprite[HPCopy];
+        if (Input.GetKeyDown(KeyCode.Space) && JumpingState == CharacterState.Grounded)
         {
             JumpingState = CharacterState.Jumping; //Set character to jumping
             JumpHeightDelta = 0.0f; //Restart Counting Jumpdistance
+            JumpStartingY = transform.position.y;
         }
     }
 
 
     void FixedUpdate()
     {
+     
+
         Vector3 characterVelocity = myRigidBody.velocity;
         characterVelocity.x = 0.0f;
 
@@ -62,6 +89,8 @@ public class PhysicsCharacterController : MonoBehaviour
             if (JumpHeightDelta >= JumpMaxHeight)
             {
                 JumpingState = CharacterState.Airborne;
+                JumpHeightDelta = 0.0f;
+                characterVelocity.y = 0.0f;
             }
         }
 
@@ -76,5 +105,9 @@ public class PhysicsCharacterController : MonoBehaviour
             characterVelocity.x += MovementSpeedPerSecond;
         }
         myRigidBody.velocity = characterVelocity;
+    }
+    public void TakeDamage(int aHPValue)
+    {
+        HP += aHPValue;
     }
 }
