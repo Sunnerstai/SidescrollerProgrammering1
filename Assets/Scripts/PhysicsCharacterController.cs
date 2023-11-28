@@ -62,6 +62,7 @@ public class PhysicsCharacterController : MonoBehaviour
         {
             HPCopy = CharacterSprite.Count -1;
         }
+    
         mySpriteRenderer.sprite = CharacterSprite[HPCopy];
         if (Input.GetKeyDown(KeyCode.Space) && JumpingState == CharacterState.Grounded)
         {
